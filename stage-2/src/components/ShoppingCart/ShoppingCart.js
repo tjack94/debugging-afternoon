@@ -10,15 +10,15 @@ class ShoppingCart extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(props) {
         this.setState({
-            shoppingCart: nextProps.shoppingCart
+            shoppingCart: props.shoppingCart
         })
     }
 
     render() {
         let shoppingCartDisplay = this.state.shoppingCart.map((element, index) => {
-            <div className="shopping-cart-product-container">
+           return <div key = {index}className="shopping-cart-product-container">
                 <img src={element.image} alt="" />
                 <div className="shopping-cart-info">
                     <h2>{element.title}</h2>
@@ -31,7 +31,7 @@ class ShoppingCart extends Component {
         })
         return (
             <div className="shopping-cart-container">
-                {shoppingCartDisplay[0] ?
+                {this.state.shoppingCart[0] ?
                     shoppingCartDisplay
                     : <div className="go-buy-something"><h1>Your shopping cart is empty!  Go buy something!</h1></div>}
             </div>
